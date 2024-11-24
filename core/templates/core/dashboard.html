@@ -1,0 +1,18 @@
+{% extends 'main.html' %} {% block content %}
+
+<h2>Home</h2>
+<div>
+  <div>
+    {% for license in licenses %}
+
+    <div>
+      <span>{{license.owner.email}} - {{license.owner.organization}}</span>
+      <h5>{{license.id}} -- <a href="#">{{license.name}}</a></h5>
+      <small>{{license.type}}</small>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
