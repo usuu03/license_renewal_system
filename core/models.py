@@ -6,7 +6,17 @@ LICENSE_TYPE_CHOICES = [
         ('Hardware', 'Hardware'),
     ]
 # Create your models here.
+
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    organization = models.CharField(max_length=255)
+    
+    def __str__(self) -> str:
+        return self.email
+
+#License Model
 class License(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=255)
     license_type = models.CharField(max_length=255, choices=LICENSE_TYPE_CHOICES)
     vendor = models.CharField(max_length=255)
@@ -19,3 +29,13 @@ class License(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['-created_at']
+
+
+    
+# Notification
+
+
+#Report
